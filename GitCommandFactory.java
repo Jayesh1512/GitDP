@@ -1,22 +1,18 @@
-package git_simulation;
-
-import commands.*;
-
 public class GitCommandFactory {
-    private RepositoryManager repository;
+    private RepositoryManager repo;
 
-    public GitCommandFactory(RepositoryManager repository) {
-        this.repository = repository;
+    public GitCommandFactory(RepositoryManager repo) {
+        this.repo = repo;
     }
 
-    public GitCommand createCommand(String type, String... params) {
+    public GitCommand createCommand(String type, String... args) {
         switch (type) {
             case "commit":
-                return new CommitCommand(repository, params[0], params[1]);
-            case "checkout":
-                return new CheckoutCommand(repository, Integer.parseInt(params[0]));
+                return new CommitCommand(repo, args[0], args[1]);
             case "log":
-                return new LogCommand(repository);
+                return new LogCommand(repo);
+            case "checkout":
+                return new CheckoutCommand(repo, args[0]);
             default:
                 throw new IllegalArgumentException("Unknown command type: " + type);
         }

@@ -1,33 +1,28 @@
-package git_simulation;
-
-import observers.User;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RepositoryManager {
     private List<Commit> commits = new ArrayList<>();
-    private List<User> users = new ArrayList<>();
 
-    public void addCommit(Commit commit) {
+    public void createCommit(String message, String data) {
+        Commit commit = new Commit(message, data);
         commits.add(commit);
-        notifyUsers("New commit added: " + commit);
+        System.out.println("Created: " + commit);
     }
 
-    public void addUser(User user) {
-        users.add(user);
+    public void showCommitLog() {
+        System.out.println("Commit Log:");
+        for (int i = 0; i < commits.size(); i++) {
+            System.out.println(i + ": " + commits.get(i));
+        }
     }
 
-    public Commit getCommit(int index) {
-        return index >= 0 && index < commits.size() ? commits.get(index) : null;
-    }
-
-    public List<Commit> getCommits() {
-        return commits;
-    }
-
-    private void notifyUsers(String message) {
-        for (User user : users) {
-            user.update(message);
+    public void checkout(String commitId) {
+        int index = Integer.parseInt(commitId);
+        if (index >= 0 && index < commits.size()) {
+            System.out.println("Checked out to: " + commits.get(index));
+        } else {
+            System.out.println("Invalid commit ID");
         }
     }
 }

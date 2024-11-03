@@ -1,7 +1,3 @@
-package decorators;
-
-import git_simulation.Commit;
-
 public class TaggedCommitDecorator extends CommitDecorator {
     private String tag;
 

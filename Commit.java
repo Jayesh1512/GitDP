@@ -1,5 +1,3 @@
-package git_simulation;
-
 public class Commit {
     private String message;
     private String data;
@@ -9,16 +7,8 @@ public class Commit {
         this.data = data;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public String getData() {
-        return data;
-    }
-
     @Override
     public String toString() {
-        return "Commit: " + message + ", Data: " + data;
+        return "Commit{" + "message='" + message + '\'' + ", data='" + data + '\'' + '}';
     }
 }
