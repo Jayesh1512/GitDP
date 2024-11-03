@@ -1,3 +1,5 @@
+package decorator;
+
 public class Commit {
     private String message;
     private String data;

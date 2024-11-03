@@ -1,19 +1,23 @@
+package simulation;
+
+import factory.GitCommandFactory;
+import observer.RepositoryManager;
+import decorator.Commit;
+import decorator.ImportantCommitDecorator;
+import decorator.TaggedCommitDecorator;
+
 public class GitSimulation {
     public static void main(String[] args) {
         RepositoryManager repo = new RepositoryManager();
         GitCommandFactory factory = new GitCommandFactory(repo);
 
-        // Commit command
-        GitCommand commitCommand = factory.createCommand("commit", "Initial commit", "Data1");
-        commitCommand.execute();
+        // Add an observer to the repository
+        repo.addObserver(commit -> System.out.println("Observer notified of new commit: " + commit));
 
-        // Log command
-        GitCommand logCommand = factory.createCommand("log");
-        logCommand.execute();
-
-        // Checkout command
-        GitCommand checkoutCommand = factory.createCommand("checkout", "0");
-        checkoutCommand.execute();
+        // Execute commands directly through the factory
+        factory.executeCommand("commit", "Initial commit", "Data1");
+        factory.executeCommand("log");
+        factory.executeCommand("checkout", "0");
 
         // Decorator pattern example
         Commit commit = new Commit("Decorator test commit", "Data2");

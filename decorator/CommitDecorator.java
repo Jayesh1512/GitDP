@@ -1,3 +1,5 @@
+package decorator;
+
 public abstract class CommitDecorator extends Commit {
     protected Commit commit;
 

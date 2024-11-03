@@ -1,3 +1,5 @@
+package decorator;
+
 public class TaggedCommitDecorator extends CommitDecorator {
     private String tag;
 

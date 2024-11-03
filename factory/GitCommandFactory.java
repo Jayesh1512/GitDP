@@ -1,3 +1,7 @@
+package factory;
+
+import observer.RepositoryManager;
+
 public class GitCommandFactory {
     private RepositoryManager repo;
 
@@ -5,14 +9,17 @@ public class GitCommandFactory {
         this.repo = repo;
     }
 
-    public GitCommand createCommand(String type, String... args) {
+    public void executeCommand(String type, String... args) {
         switch (type) {
             case "commit":
-                return new CommitCommand(repo, args[0], args[1]);
+                repo.createCommit(args[0], args[1]);
+                break;
             case "log":
-                return new LogCommand(repo);
+                repo.showCommitLog();
+                break;
             case "checkout":
-                return new CheckoutCommand(repo, args[0]);
+                repo.checkout(args[0]);
+                break;
             default:
                 throw new IllegalArgumentException("Unknown command type: " + type);
         }
